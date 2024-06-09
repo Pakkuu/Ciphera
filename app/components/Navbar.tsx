@@ -9,8 +9,8 @@ export default function Navbar() {
       <div className="w-[20rem] h-[5rem] relative ml-[2rem] opacity-70 hover:opacity-90">
         <Link href="/">
           <Image
-            src="/ciphera2.svg"
-            alt="Ciphera Logo"
+            src="/cyphera2.svg"
+            alt="Cyphera Logo"
             layout="fill"
             objectFit="contain"
           />

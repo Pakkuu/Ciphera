@@ -15,7 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">  
+    <html lang="en">
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet"/>
+      </head>
       <body className={raleway.className}>
           {children}
       </body>

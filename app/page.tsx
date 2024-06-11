@@ -31,7 +31,7 @@ const Landing = () => {
           <div className="text-[4rem] font-extralight opacity-70">
             Data Fortress
           </div>
-          <div className="text-[2rem] font-extralight opacity-20">
+          <div className="text-[1.3rem] font-extralight opacity-20">
             cloud storage - elegantly crafted
           </div>
           <Link href="/authenticate">

@@ -6,8 +6,8 @@ import Link from "next/link";
 
 const Landing = () => {
   return (
-    <div className="min-h-screen w-full flex bg-gradient-to-br from-[#ffffff30] to-[#6938be57] relative overflow-hidden">
-      <div className="absolute top-[-45rem] right-[-15rem] w-[150rem] h-[150rem] opacity-10">
+    <div className="relative flex min-h-screen w-full overflow-hidden bg-gradient-to-br from-[#ffffff30] to-[#6938be57]">
+      <div className="top-[- 45rem] absolute right-[-15rem] h-[150rem] w-[150rem] opacity-10">
         <Image
           src="/bg.svg"
           alt="Cyphera Logo"
@@ -15,8 +15,8 @@ const Landing = () => {
           objectFit="contain"
         />
       </div>
-      <div className="lg:flex lg:flex-row lg:justify-evenly sm:flex-col items-center relative h-[85vh] w-[90%] bg-white bg-opacity-10 shadow-[0_0_15px_rgba(0,0,0,0.05)] backdrop-filter border-[#fffffff6] border-[0.06rem] backdrop-blur-[0.2rem] rounded-3xl m-auto z-10 overflow-hidden">
-        <div className="w-[30rem] h-[15rem] relative opacity-80 lg:mx-0 sm:mx-auto">
+      <div className="w-[9 0%] bor der-[0.06rem] m-au to lg:fle x lg: relative z-10 h-[85vh] flex-row items-center overflow-hidden rounded-3xl border-[#fffffff6] bg-white bg-opacity-10 shadow-[0_0_15px_rgba(0,0,0,0.05)] backdrop-blur-[0.2rem] backdrop-filter sm:flex-col lg:justify-evenly">
+        <div className="relative h-[15rem] w-[30rem] opacity-80 sm:mx-auto lg:mx-0">
           <Image
             src="/cyphera2.svg"
             alt="Cyphera Logo"
@@ -24,7 +24,7 @@ const Landing = () => {
             objectFit="contain"
           />
         </div>
-        <div className="flex-col tracking-widest sm:text-center mt-4 lg:mt-0">
+        <div className="mt-4 flex-col tracking-widest sm:text-center lg:mt-0">
           <div className="text-[4rem] font-extralight opacity-70">
             Your Personal
           </div>
@@ -35,9 +35,13 @@ const Landing = () => {
             cloud storage - elegantly crafted
           </div>
           <Link href="/authenticate">
-            <Button className="font-space-mono rounded-[1rem] bg-[#353535bd] hover:bg-[#35353595] mt-[1rem]" variant="contained" disableElevation>
-              Get Started 
-              <SlArrowRight className="ml-[1rem]"/>
+            <Button
+              className="mt-[1rem] rounded-[1rem] bg-[#353535bd] font-space-mono hover:bg-[#35353595]"
+              variant="contained"
+              disableElevation
+            >
+              Get Started
+              <SlArrowRight className="ml-[1rem]" />
             </Button>
           </Link>
         </div>

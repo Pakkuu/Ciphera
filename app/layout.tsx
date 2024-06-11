@@ -17,11 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet"/>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap"
+          rel="stylesheet"
+        />
       </head>
-      <body className={raleway.className}>
-          {children}
-      </body>
+      <body className={raleway.className}>{children}</body>
     </html>
   );
 }

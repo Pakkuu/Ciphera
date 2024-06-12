@@ -30,14 +30,15 @@ export default function Form() {
     }
 
     try {
-      const result = await signIn("credentials", {
+      const response = await signIn("credentials", {
         email,
         password,
         redirect: false,
       });
 
-      if (result?.ok) {
+      if (!response?.error) {
         router.push("/home");
+        router.refresh();
       } else {
         setError("Incorrect Email or Password");
       }
@@ -76,7 +77,7 @@ export default function Form() {
         </Typography>
       )}
       <Button
-        className="h-[3rem] rounded-md bg-[#281b9abd] hover:bg-[#35353595] font-space-mono"
+        className="h-[3rem] rounded-md bg-[#281b9abd] font-thin hover:bg-[#35353595]"
         variant="contained"
         disableElevation
         type="submit"

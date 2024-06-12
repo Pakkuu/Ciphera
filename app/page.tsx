@@ -10,17 +10,15 @@ const Landing = () => {
         <Image
           src="/bg.svg"
           alt="Cyphera Logo"
-          layout="fill"
-          objectFit="contain"
+          fill
         />
       </div>
       <div className="z-10 m-auto h-[85vh] w-[90%] items-center overflow-hidden rounded-3xl border-[0.06rem] border-[#fffffff6] bg-white bg-opacity-10 shadow-[0_0_15px_rgba(0,0,0,0.05)] backdrop-blur-[0.2rem] backdrop-filter sm:flex-col lg:relative lg:flex lg:flex-row lg:justify-evenly">
-        <div className="relative h-[15rem] w-[30rem] opacity-80 sm:mx-auto sm:mt-[5.5rem] lg:mx-0">
+        <div className="relative h-[15rem] w-[30rem] opacity-80 sm:mx-auto sm:mt-[5.5rem] lg:mx-0 lg:mt-0">
           <Image
             src="/cyphera2.svg"
             alt="Cyphera Logo"
-            layout="fill"
-            objectFit="contain"
+            fill
           />
         </div>
         <div className="mt-4 flex-col tracking-widest sm:text-center lg:mt-0">
@@ -30,12 +28,12 @@ const Landing = () => {
           <div className="sm:text-[3rem] lg:text-[4rem] font-extralight opacity-70">
             Data Fortress
           </div>
-          <div className="sm:text-[0.9rem] lg:text-[1.3rem] font-extralight opacity-20">
+          <div className="sm:text-[1.1rem] lg:text-[1.3rem] font-extralight opacity-20">
             cloud storage - elegantly crafted
           </div>
           <Link href="/register">
             <Button
-              className="mt-[1rem] rounded-[1rem] bg-[#353535bd] font-space-mono hover:bg-[#35353595]"
+              className="mt-[1rem] rounded-[1rem] bg-[#353535bd] font-thin hover:bg-[#35353595]"
               variant="contained"
               disableElevation
             >

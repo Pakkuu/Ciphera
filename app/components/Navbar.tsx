@@ -1,44 +1,72 @@
 "use client";
 import Image from "next/image";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import Link from "next/link";
+import { FaFolderOpen } from "react-icons/fa";
+import { IoCloudUpload } from "react-icons/io5";
+import { TbLogout2 } from "react-icons/tb";
+import { redirect, usePathname, useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 export default function Navbar() {
+  const currentPath = usePathname();
+  const router = useRouter();
+  const getButtonStyles = (route: string) => {
+    return currentPath === route
+      ? "bg-[#eeeeee] backdrop-blur-[8rem] backdrop-filter"
+      : "";
+  };
   return (
-    <div className="mt-[1rem] flex h-[5.7rem] items-center">
-      <div className="relative ml-[2rem] h-[5rem] w-[20rem] opacity-70 hover:opacity-90">
+    <div className="flex h-full w-[22%] flex-col overflow-hidden border-r-[0.06rem] border-[#fffffff6] bg-[#494949] bg-opacity-10 backdrop-blur-[8rem] backdrop-filter">
+      <div className="relative mb-[5rem] ml-[1.2rem] mr-auto mt-[1.5rem] h-[5rem] w-[15rem] opacity-80">
         <Link href="/">
-          <Image
-            src="/cyphera2.svg"
-            alt="Cyphera Logo"
-            layout="fill"
-            objectFit="contain"
-          />
+          <Image src="/cyphera2.svg" alt="Cyphera Logo" fill />
         </Link>
       </div>
-      <div className="ml-auto mr-[3rem]">
-        <div className="flex w-[17rem] justify-evenly">
-          <Link href="/upload">
-            <Button
-              className="text-[1rem] font-bold text-gray-500 hover:text-[#000000]"
-              disableElevation
-            >
-              upload
-            </Button>
-          </Link>
-          <Button
-            className="text-[1rem] font-bold text-gray-500 hover:text-[#000000]"
-            disableElevation
+      <div className="mb-[3rem] flex h-[13rem] flex-col items-center justify-evenly">
+        <Button
+          className={`h-[3.5rem] w-[19rem] rounded-lg ${getButtonStyles("/home")}`}
+          onClick={() => router.push("/home")}
+        >
+          <FaFolderOpen className="text-[1.6rem] text-[#281b9abd]" />
+          <Typography
+            variant="body1"
+            className="ml-[0.8rem] mr-auto text-[1.2rem] text-[#281b9abd]"
+            sx={{ textTransform: "none" }}
           >
-            files
-          </Button>
-          <Button
-            className="text-[1rem] font-bold text-gray-500 hover:text-[#000000]"
-            disableElevation
+            Files
+          </Typography>
+        </Button>
+
+        <Button
+          className={`h-[3.5rem] w-[19rem] rounded-lg ${getButtonStyles("/upload")}`}
+          onClick={() => router.push("/upload")}
+        >
+          <IoCloudUpload className="text-[1.6rem] text-[#281b9abd]" />
+          <Typography
+            variant="body1"
+            className="ml-[0.8rem] mr-auto text-[1.2rem] text-[#281b9abd]"
+            sx={{ textTransform: "none" }}
           >
-            Profile
-          </Button>
-        </div>
+            Upload
+          </Typography>
+        </Button>
+
+        <Button
+          className="h-[3.5rem] w-[19rem] rounded-lg"
+          onClick={() => {
+            signOut();
+          }}
+        >
+          <TbLogout2 className="text-[1.6rem] text-[#281b9abd]" />
+          <Typography
+            variant="body1"
+            className="ml-[0.8rem] mr-auto text-[1.2rem] text-[#281b9abd]"
+            sx={{ textTransform: "none" }}
+          >
+            Logout
+          </Typography>
+        </Button>
       </div>
     </div>
   );

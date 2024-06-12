@@ -1,8 +1,10 @@
 import Form from "./form";
 import Image from "next/image";
 import Link from "next/link";
+import { getServerSession } from "next-auth/next";
+import { redirect } from "next/navigation";
 
-export default function LogInPage() {
+export default async function LogInPage() {
   return (
     <div className="relative flex min-h-screen w-full overflow-hidden bg-gradient-to-br from-[#ffffff30] to-[#6938be57]">
       <div className="absolute right-[-15rem] top-[-40rem] h-[150rem] w-[150rem] opacity-10">

@@ -3,8 +3,9 @@ import Navbar from "../components/Navbar";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
-export default async function HomePage() {
+export default async function UploadPage() {
   const session = await getServerSession();
+  console.log(session)
   if (!session) {
     redirect("/register");
   }

@@ -33,18 +33,15 @@ export default function Form() {
     try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
       setLoading(false);
 
-      if (response.ok) {
+      if (response.status === 200) {
         router.push("/home");
-      } else if (data.status === 400) {
+      } else if (response.status === 400) {
         setError(data.error || "Email already exists.");
       } else {
         setError("Internal server error");
@@ -82,7 +79,7 @@ export default function Form() {
         </Typography>
       )}
       <Button
-        className="h-[3rem] rounded-md bg-[#281b9abd] font-space-mono hover:bg-[#35353595]"
+        className="h-[3rem] rounded-md bg-[#281b9abd] font-thin hover:bg-[#35353595]"
         variant="contained"
         disableElevation
         type="submit"

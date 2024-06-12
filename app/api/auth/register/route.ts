@@ -31,10 +31,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ message: "User created successfully", status: 200 });
   } catch (e) {
-    console.log(`ERROR: ${e}`);
+    console.error("ERROR:", e);
     return NextResponse.json(
-      { error: "An error occurred while creating the user" },
-      { status: 500 },
+      { error: "Internal server error" },
+      { status: 500 }
     );
   }
 }

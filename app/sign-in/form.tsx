@@ -1,51 +1,88 @@
 "use client";
-import { FormEvent } from "react";
-import { Button } from "@mui/material";
-import Link from "next/link";
+import { useState, FormEvent } from "react";
+import { Button, TextField, Typography, CircularProgress } from "@mui/material";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { isEmail } from "validator";
 
 export default function Form() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
+
     const formData = new FormData(e.currentTarget);
-    const result = await signIn("credentials", {
-      email: formData.get("email"),
-      password: formData.get('password'),
-      redirect: false
-    });
-    if (result?.ok) {
-      router.push("/home");
-    } else {
-      console.error("Incorrect Password!");
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    if (!email || !password) {
+      setLoading(false);
+      setError("Both fields are required.");
+      return;
+    } else if (!isEmail(email.toString())) {
+      setLoading(false);
+      setError("Please enter a valid email.");
+      return;
+    }
+
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (result?.ok) {
+        router.push("/home");
+      } else {
+        setError("Incorrect Email or Password");
+      }
+    } catch (error) {
+      console.error("Authentication error:", error);
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto mb-[5rem] flex w-[75%] flex-col gap-[1rem]"
+      className="mx-auto mb-[7.5rem] flex w-[75%] flex-col gap-[1rem]"
     >
-      <input
+      <TextField
         name="email"
-        className="h-[3rem] rounded-md bg-[#ffffff8c] pl-[1rem] text-black"
-        type="email"
-        placeholder="email"
+        label="Email"
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        className="mb-[-1rem]"
       />
-      <input
+      <TextField
         name="password"
-        className="h-[3rem] rounded-md bg-[#ffffff8c] pl-[1rem] text-black"
+        label="Password"
+        variant="outlined"
+        fullWidth
         type="password"
-        placeholder="password"
+        margin="normal"
       />
+      {error && (
+        <Typography color="error" variant="body2">
+          {error}
+        </Typography>
+      )}
       <Button
-        className="mb-[2.5rem] h-[3rem] rounded-md bg-[#353535bd] font-space-mono hover:bg-[#35353595]"
+        className="h-[3rem] rounded-md bg-[#281b9abd] hover:bg-[#35353595] font-space-mono"
         variant="contained"
         disableElevation
         type="submit"
+        disabled={loading}
       >
-        Sign In
+        {loading ? <CircularProgress size={24} /> : "Sign In"}
       </Button>
     </form>
   );

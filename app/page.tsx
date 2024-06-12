@@ -15,7 +15,7 @@ const Landing = () => {
         />
       </div>
       <div className="z-10 m-auto h-[85vh] w-[90%] items-center overflow-hidden rounded-3xl border-[0.06rem] border-[#fffffff6] bg-white bg-opacity-10 shadow-[0_0_15px_rgba(0,0,0,0.05)] backdrop-blur-[0.2rem] backdrop-filter sm:flex-col lg:relative lg:flex lg:flex-row lg:justify-evenly">
-        <div className="relative h-[15rem] w-[30rem] opacity-80 sm:mx-auto lg:mx-0">
+        <div className="relative h-[15rem] w-[30rem] opacity-80 sm:mx-auto sm:mt-[5.5rem] lg:mx-0">
           <Image
             src="/cyphera2.svg"
             alt="Cyphera Logo"
@@ -24,13 +24,13 @@ const Landing = () => {
           />
         </div>
         <div className="mt-4 flex-col tracking-widest sm:text-center lg:mt-0">
-          <div className="text-[4rem] font-extralight opacity-70">
+          <div className="sm:text-[3rem] lg:text-[4rem] font-extralight opacity-70">
             Your Personal
           </div>
-          <div className="text-[4rem] font-extralight opacity-70">
+          <div className="sm:text-[3rem] lg:text-[4rem] font-extralight opacity-70">
             Data Fortress
           </div>
-          <div className="text-[1.3rem] font-extralight opacity-20">
+          <div className="sm:text-[0.9rem] lg:text-[1.3rem] font-extralight opacity-20">
             cloud storage - elegantly crafted
           </div>
           <Link href="/register">

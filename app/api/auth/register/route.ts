@@ -3,6 +3,7 @@ import { hash } from "bcrypt";
 import pool from "../../../../db";
 
 export async function POST(request: Request) {
+  console.log('here')
   try {
     const { email, password } = await request.json();
     //can handle additional validation of email and password here

@@ -14,13 +14,11 @@ const handler = NextAuth({
         password: {},
       },
       async authorize(credentials) {
-        console.log(credentials)
         if (!credentials || !credentials.email || !credentials.password) {
           throw new Error("Invalid credentials");
         }
 
         try {
-          // Query the database to find the user with the provided email
           const query = "SELECT * FROM users WHERE email = $1";
           const values = [credentials.email];
           const result = await pool.query(query, values);

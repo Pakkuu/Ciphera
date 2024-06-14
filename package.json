@@ -15,6 +15,7 @@
     "@mui/material": "^5.15.19",
     "@types/validator": "^13.11.10",
     "bcrypt": "^5.1.1",
+    "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
     "fs": "^0.0.1-security",
     "next": "14.2.3",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/crypto-js": "^4.2.2",
     "@types/node": "^20",
     "@types/pg": "^8.11.6",
     "@types/react": "^18",

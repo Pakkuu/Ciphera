@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FaFolderOpen } from "react-icons/fa";
 import { IoCloudUpload } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
-import { redirect, usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 
 export default function Navbar() {
@@ -17,7 +17,7 @@ export default function Navbar() {
       : "";
   };
   return (
-    <div className="flex h-full w-[20rem] flex-col overflow-hidden border-r-[0.06rem] border-[#fffffff6] bg-[#494949] bg-opacity-10 backdrop-blur-[8rem] backdrop-filter">
+    <div className="flex h-full w-[20rem] flex-col overflow-hidden border-r-[0.06rem] border-[#fffffff6] bg-[#737373] bg-opacity-10 backdrop-blur-[8rem] backdrop-filter">
       <div className="relative mb-[5rem] ml-[1.2rem] mr-auto mt-[1.5rem] h-[5rem] w-[15rem] opacity-80">
         <Link href="/">
           <Image src="/cyphera2.svg" alt="Cyphera Logo" fill />

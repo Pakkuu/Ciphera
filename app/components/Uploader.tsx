@@ -87,7 +87,7 @@ export default function Uploader() {
         />
         <label
           htmlFor="file-input"
-          className={`flex h-[12rem] w-auto cursor-pointer items-end justify-center rounded-3xl border-[0.06rem] border-[#fffffff6] bg-white bg-opacity-10 px-[7rem] py-[2rem] text-[#2c2c2cce] shadow-[0_0_15px_rgba(0,0,0,0.05)] backdrop-blur-[0.2rem] backdrop-filter hover:shadow-[0_0_15px_rgba(0,0,0,0.099)]`}
+          className={`flex h-[12rem] w-auto cursor-pointer items-end justify-center rounded-3xl border-[0.06rem] border-[#fffffff6] bg-white bg-opacity-10 px-[7rem] py-[2rem] text-[#2c2c2cce] shadow-[0_0_15px_rgba(0,0,0,0.05)] backdrop-blur-[0.2rem] backdrop-filter hover:shadow-[0_0_15px_rgba(0,0,0,0.099)] hover:bg-opacity-20`}
         >
           <BsUpload
             className={`absolute top-12 text-[3rem] ${
@@ -95,7 +95,7 @@ export default function Uploader() {
             }`}
           />
           <span
-            className={`text-[1.8rem] font-thin ${
+            className={`text-[1.8rem] font-light ${
               selectedFile ? "font-light text-[#281b9abd]" : ""
             }`}
           >

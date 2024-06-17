@@ -1,15 +1,14 @@
 import Image from "next/image";
 import Navbar from "../components/Navbar";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 import File from "../components/File";
 
 export default async function HomePage() {
   const session = await getServerSession();
   if (!session) {
-    redirect("/register");
+    redirect('/register');
   }
-
   return (
     <div className="relative flex min-h-screen w-full overflow-hidden bg-gradient-to-br from-[#ffffff30] to-[#6938be57]">
       <div className="absolute right-[-15rem] top-[-40rem] h-[150rem] w-[150rem] opacity-10">

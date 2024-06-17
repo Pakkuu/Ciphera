@@ -5,9 +5,10 @@ import Link from "next/link";
 import { SlArrowRight } from "react-icons/sl";
 import { useRouter } from "next/navigation";
 import { isEmail } from "validator";
+import { signIn } from "next-auth/react";
 
 export default function Form() {
-  const router = useRouter();
+  const router = useRouter()
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -35,16 +36,28 @@ export default function Form() {
         method: "POST",
         body: JSON.stringify({ email, password }),
       });
-
-      const data = await response.json();
-      setLoading(false);
-
+    
       if (response.status === 200) {
-        router.push("/home");
-      } else if (response.status === 400) {
-        setError(data.error || "Email already exists.");
+        const response = await signIn("credentials", {
+          email,
+          password,
+          redirect: false,
+        });
+        if (!response?.error) {
+          router.push("/home");
+          router.refresh();
+        } else {
+          setError("error creating credentials...");
+        }
       } else {
-        setError("Internal server error");
+        const data = await response.json();
+        setLoading(false);
+    
+        if (response.status === 400) {
+          setError(data.error || "Email already exists.");
+        } else {
+          setError("Internal server error");
+        }
       }
     } catch (err) {
       setLoading(false);

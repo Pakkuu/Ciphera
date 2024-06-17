@@ -1,11 +1,14 @@
 import Form from "./form";
 import Image from "next/image";
 import Link from "next/link";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 
 export default async function RegisterPage() {
-
+  const session = await getServerSession();
+  if (session) {
+    redirect('/home');
+  }
   return (
     <div className="relative flex min-h-screen w-full overflow-hidden bg-gradient-to-br from-[#ffffff30] to-[#6938be57]">
       <div className="absolute right-[-15rem] top-[-40rem] h-[150rem] w-[150rem] opacity-10">

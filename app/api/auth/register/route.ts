@@ -18,14 +18,32 @@ export async function POST(request: Request) {
     }
 
     const hashedPassword = await hash(password, 10);
-    console.log(hashedPassword);
 
     const query = "INSERT INTO users (email, password) VALUES ($1, $2)";
     const values = [email, hashedPassword];
 
     await pool.query(query, values);
 
-    return NextResponse.json({ message: "User created successfully", status: 200 });
+    try{
+      const res = await fetch('http://localhost:4000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email: email}),
+      })
+      const data = await res.json()
+      console.log(data.message)
+      return NextResponse.json(
+        { error: "User created successfully!" },
+        { status: 200 }
+      );
+    }catch(error){
+      return NextResponse.json(
+        { error: "Error registering user" },
+        { status: 500 },
+      );
+    }
   } catch (e) {
     console.error("ERROR:", e);
     return NextResponse.json(

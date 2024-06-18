@@ -25,19 +25,20 @@ export async function POST(request: Request) {
     await pool.query(query, values);
 
     try{
-      const res = await fetch('http://localhost:4000/users', {
+      const res = await fetch('http://ec2-18-118-112-0.us-east-2.compute.amazonaws.com:4000/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({email: email}),
       })
-      const data = await res.json()
-      console.log(data.message)
-      return NextResponse.json(
-        { error: "User created successfully!" },
-        { status: 200 }
-      );
+
+      if(res.ok){
+        return NextResponse.json(
+          { error: "User created successfully!" },
+          { status: 200 }
+        );
+      }
     }catch(error){
       return NextResponse.json(
         { error: "Error registering user" },
@@ -47,7 +48,7 @@ export async function POST(request: Request) {
   } catch (e) {
     console.error("ERROR:", e);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Database error" },
       { status: 500 }
     );
   }

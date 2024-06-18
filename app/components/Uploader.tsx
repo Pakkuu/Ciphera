@@ -4,11 +4,6 @@ import CryptoJS from "crypto-js";
 import { BsUpload } from "react-icons/bs";
 import { Button, Typography, CircularProgress } from "@mui/material";
 import { useSession } from "next-auth/react";
-import {
-  S3Client,
-  PutObjectCommand,
-  ServerSideEncryption,
-} from "@aws-sdk/client-s3";
 
 export default function Uploader() {
   const { data: session } = useSession();
@@ -50,46 +45,35 @@ export default function Uploader() {
     }
   };
 
-  const encryptFile = async (file: File): Promise<string> => {
+  const encryptFile = async (file: File): Promise<Blob> => {
     try {
-      const reader = new FileReader();
-      const fileData = await new Promise<string>((resolve, reject) => {
-        reader.onload = () => {
-          resolve(reader.result as string);
-        };
-        reader.onerror = (error) => {
-          reject(error);
-        };
-        reader.readAsDataURL(file);
-      });
-
-      const key =
-        "7606f9bf05d3f25dd41ffa2e073cfb6b5ae9a7ea6daa00217f6e48cb3b7e201a";
-      const encryptedData = CryptoJS.AES.encrypt(fileData, key).toString();
-      return encryptedData;
+      const fileData = await file.arrayBuffer();
+      const key = "7606f9bf05d3f25dd41ffa2e073cfb6b5ae9a7ea6daa00217f6e48cb3b7e201a";
+      const wordArray = CryptoJS.lib.WordArray.create(new Uint8Array(fileData));
+      const encryptedWordArray = CryptoJS.AES.encrypt(wordArray, key);
+      const encryptedData = encryptedWordArray.toString(CryptoJS.format.OpenSSL);
+      const encryptedBlob = new Blob([encryptedData], { type: file.type });
+      return encryptedBlob;
     } catch (error) {
       throw new Error("ERROR: File Failed Encryption. File Size is Too Large.");
     }
   };
 
-  const uploadFile = async (encryptedData: string) => {
-    console.log("Encrypted data:", encryptedData);
+  const uploadFile = async (encryptedBlob: Blob) => {
     const userEmail = session?.user?.email;
-    console.log("User Email:", userEmail);
     const fileName = selectedFile?.name;
-
+  
     try {
+      const formData = new FormData();
+      formData.append("email", userEmail || "");
+      formData.append("fileName", fileName || "");
+      formData.append("encryptedFile", encryptedBlob, fileName);
+  
       const res = await fetch("http://localhost:4000/files", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json", 
-        },
-        body: JSON.stringify({
-          email: userEmail,
-          fileName: fileName,
-          encryptedData: encryptedData,
-        }),
+        body: formData,
       });
+  
       if (res.ok) {
         setSuccess(true);
         setTimeout(() => {

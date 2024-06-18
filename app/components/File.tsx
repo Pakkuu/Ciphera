@@ -112,7 +112,7 @@ export default function File() {
       {files.slice(1).map((fileName, index) => (
         <div
           key={index}
-          className="group mt-[0.5rem] flex h-[6rem] items-center rounded-[1rem] border-[0.07rem] border-[#ffffff] bg-[#ffffff63] hover:h-[6.5rem] hover:mt-[0.6rem] hover:scale-[101.5%] transition-all duration-200"
+          className="group mt-[0.5rem] flex h-[6rem] items-center rounded-[1rem] border-[0.07rem] border-[#ffffff] bg-[#ffffff63]"
         >
           <span className="ml-[3rem] opacity-70 text-[1.25rem] tracking-wide font-medium">{fileName}</span>
           <div className="ml-auto mr-[2rem] flex w-[4.5rem] justify-between text-[#ffffff00] group-hover:text-[#c1c1c1]">

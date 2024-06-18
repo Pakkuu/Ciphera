@@ -13,11 +13,11 @@ export default function Navbar() {
   const router = useRouter();
   const getButtonStyles = (route: string) => {
     return currentPath === route
-      ? "bg-[#eeeeee] backdrop-blur-[8rem] backdrop-filter"
+      ? "bg-[#ffffffb2] backdrop-blur-[8rem] backdrop-filter"
       : "";
   };
   return (
-    <div className="flex h-full w-[20rem] flex-col overflow-hidden border-r-[0.06rem] border-[#fffffff6] bg-[#737373] bg-opacity-10 backdrop-blur-[8rem] backdrop-filter">
+    <div className="flex h-full w-[20rem] flex-col overflow-hidden border-[0.06rem] border-[#ffffff] bg-[#ffffff32] bg-opacity-10 backdrop-blur-[8rem] backdrop-filter">
       <div className="relative mb-[5rem] ml-[1.2rem] mr-auto mt-[1.5rem] h-[5rem] w-[15rem] opacity-80">
         <Link href="/">
           <Image src="/cyphera2.svg" alt="Cyphera Logo" fill />

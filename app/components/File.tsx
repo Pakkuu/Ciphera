@@ -39,6 +39,31 @@ export default function File() {
     getFileNames();
   }, [session?.user?.email]);
 
+  const deleteFile = async (fileName: string) => {
+    const email = session?.user?.email;
+    if (email) {
+      try {
+        const res = await fetch('http://localhost:4000/files/delete', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: email, fileName: fileName }),
+        });
+        
+        const response = await res.json()
+
+        if (res.ok) {
+          setFiles((prevFiles) => prevFiles.filter((file) => file !== fileName));
+        } else {
+          console.log(`Failed to delete file. error: ${response.error}`);
+        }
+      } catch (error) {
+        console.log(`Error: ${error}`);
+      }
+    }
+  };
+  
   const downloadFile = async (fileName: string) => {
     const email = session?.user?.email;
     if (email) {
@@ -87,7 +112,7 @@ export default function File() {
       {files.slice(1).map((fileName, index) => (
         <div
           key={index}
-          className="group mt-[0.5rem] flex h-[6rem] items-center rounded-[1rem] border-[0.07rem] border-[#ffffff] bg-[#ffffff63] hover:mt-[0.7rem] hover:scale-[102%] transition-all duration-200"
+          className="group mt-[0.5rem] flex h-[6rem] items-center rounded-[1rem] border-[0.07rem] border-[#ffffff] bg-[#ffffff63] hover:h-[6.5rem] hover:mt-[0.6rem] hover:scale-[101.5%] transition-all duration-200"
         >
           <span className="ml-[3rem] opacity-70 text-[1.25rem] tracking-wide font-medium">{fileName}</span>
           <div className="ml-auto mr-[2rem] flex w-[4.5rem] justify-between text-[#ffffff00] group-hover:text-[#c1c1c1]">
@@ -95,6 +120,7 @@ export default function File() {
               onClick={() => downloadFile(fileName)}
               className="text-[2.2rem] hover:cursor-pointer hover:text-[#a3a3a3] active:text-[#a3a3a396] active:scale-[92%]" />
             <FaTrashCan
+              onClick={() => deleteFile(fileName)}
               className="mt-[0.38rem] text-[1.7rem] hover:cursor-pointer hover:text-[#a3a3a3] active:text-[#a3a3a396] active:scale-[92%]"
             />
           </div>

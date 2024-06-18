@@ -9,7 +9,6 @@ export default async function UploadPage() {
   if (!session) {
     redirect("/register");
   }
-
   return (
     <div className="relative flex min-h-screen w-full overflow-hidden bg-gradient-to-br from-[#ffffff30] to-[#6938be57]">
       <div className="absolute right-[-15rem] top-[-40rem] h-[150rem] w-[150rem] opacity-10">

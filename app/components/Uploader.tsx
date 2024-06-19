@@ -69,7 +69,7 @@ export default function Uploader() {
       formData.append("fileName", fileName || "");
       formData.append("encryptedFile", encryptedBlob, fileName);
   
-      const res = await fetch("http://ec2-18-118-112-0.us-east-2.compute.amazonaws.com:4000/files", {
+      const res = await fetch("http://cyphera-servers-load-balancer-300286383.us-east-2.elb.amazonaws.com:4000/files", {
         method: "POST",
         body: formData,
       });

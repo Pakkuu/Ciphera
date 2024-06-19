@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     await pool.query(query, values);
 
     try{
-      const res = await fetch('http://ec2-18-118-112-0.us-east-2.compute.amazonaws.com:4000/users', {
+      const res = await fetch('http://cyphera-servers-load-balancer-300286383.us-east-2.elb.amazonaws.com:4000/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

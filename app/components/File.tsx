@@ -16,7 +16,7 @@ export default function File() {
       if (email) {
         try {
           const res = await fetch(
-            `http://ec2-18-118-112-0.us-east-2.compute.amazonaws.com:4000/files?email=${encodeURIComponent(email)}`,
+            `http://cyphera-servers-load-balancer-300286383.us-east-2.elb.amazonaws.com:4000/files?email=${encodeURIComponent(email)}`,
             {
               method: "GET",
               headers: {
@@ -43,7 +43,7 @@ export default function File() {
     const email = session?.user?.email;
     if (email) {
       try {
-        const res = await fetch('http://ec2-18-118-112-0.us-east-2.compute.amazonaws.com:4000/files/delete', {
+        const res = await fetch('http://cyphera-servers-load-balancer-300286383.us-east-2.elb.amazonaws.com:4000/files/delete', {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ export default function File() {
     if (email) {
       try {
         const res = await fetch(
-          `http://ec2-18-118-112-0.us-east-2.compute.amazonaws.com:4000/files/download?email=${encodeURIComponent(email)}&fileName=${encodeURIComponent(fileName)}`,
+          `http://cyphera-servers-load-balancer-300286383.us-east-2.elb.amazonaws.com:4000/files/download?email=${encodeURIComponent(email)}&fileName=${encodeURIComponent(fileName)}`,
           {
             method: "GET",
           },

@@ -25,7 +25,7 @@ export default function Navbar() {
       </div>
       <div className="mb-[3rem] flex h-[13rem] flex-col items-center justify-evenly">
         <Button
-          className={`h-[3.5rem] w-[19rem] rounded-lg ${getButtonStyles("/home")}`}
+          className={`h-[3.5rem] w-[95%] rounded-lg ${getButtonStyles("/home")}`}
           onClick={() => router.push("/home")}
         >
           <FaFolderOpen className="text-[1.6rem] text-[#281b9abd]" />
@@ -39,7 +39,7 @@ export default function Navbar() {
         </Button>
 
         <Button
-          className={`h-[3.5rem] w-[19rem] rounded-lg ${getButtonStyles("/upload")}`}
+          className={`h-[3.5rem] w-[95%] rounded-lg ${getButtonStyles("/upload")}`}
           onClick={() => router.push("/upload")}
         >
           <IoCloudUpload className="text-[1.6rem] text-[#281b9abd]" />
@@ -53,7 +53,7 @@ export default function Navbar() {
         </Button>
 
         <Button
-          className="h-[3.5rem] w-[19rem] rounded-lg"
+          className="h-[3.5rem] w-[95%] rounded-lg"
           onClick={() => {
             signOut();
           }}
